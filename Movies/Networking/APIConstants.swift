@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum APIConstants {
+	static let baseURL = "https://api.themoviedb.org/3/"
+}
