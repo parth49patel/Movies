@@ -18,6 +18,8 @@
 		5135DE0C300859DA0048C886 /* TMDBServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE0B300859DA0048C886 /* TMDBServiceProtocol.swift */; };
 		5135DE0E30085ADC0048C886 /* TMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE0D30085ADC0048C886 /* TMDBService.swift */; };
 		5135DE103008634D0048C886 /* MockTMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE0F3008634D0048C886 /* MockTMDBService.swift */; };
+		5135DE12300918450048C886 /* CachedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE11300918440048C886 /* CachedMovie.swift */; };
+		5135DE15300957DB0048C886 /* MovieCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE14300957DB0048C886 /* MovieCacheManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		5135DE0B300859DA0048C886 /* TMDBServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBServiceProtocol.swift; sourceTree = "<group>"; };
 		5135DE0D30085ADC0048C886 /* TMDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBService.swift; sourceTree = "<group>"; };
 		5135DE0F3008634D0048C886 /* MockTMDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTMDBService.swift; sourceTree = "<group>"; };
+		5135DE11300918440048C886 /* CachedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedMovie.swift; sourceTree = "<group>"; };
+		5135DE14300957DB0048C886 /* MovieCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCacheManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 				5135DDED3006BCFE0048C886 /* Models */,
 				5135DDEB3006BCE40048C886 /* Views */,
 				5135DDEC3006BCEB0048C886 /* ViewModel */,
+				5135DE13300957BB0048C886 /* Caching */,
 				5135DDEE3006BD150048C886 /* Networking */,
 				5135DDE43006BC0C0048C886 /* Assets.xcassets */,
 			);
@@ -94,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				5135DE033008443D0048C886 /* Movie.swift */,
+				5135DE11300918440048C886 /* CachedMovie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -118,6 +124,14 @@
 				5135DDE63006BC0C0048C886 /* MoviesApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		5135DE13300957BB0048C886 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				5135DE14300957DB0048C886 /* MovieCacheManager.swift */,
+			);
+			path = Caching;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,12 +207,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5135DE0E30085ADC0048C886 /* TMDBService.swift in Sources */,
+				5135DE15300957DB0048C886 /* MovieCacheManager.swift in Sources */,
 				5135DDE83006BC0C0048C886 /* ContentView.swift in Sources */,
 				5135DE063008472D0048C886 /* APIConstants.swift in Sources */,
 				5135DDF03006BD580048C886 /* Secrets.swift in Sources */,
 				5135DE083008474D0048C886 /* NetworkError.swift in Sources */,
 				5135DE043008443D0048C886 /* Movie.swift in Sources */,
 				5135DE103008634D0048C886 /* MockTMDBService.swift in Sources */,
+				5135DE12300918450048C886 /* CachedMovie.swift in Sources */,
 				5135DDE93006BC0C0048C886 /* MoviesApp.swift in Sources */,
 				5135DE0C300859DA0048C886 /* TMDBServiceProtocol.swift in Sources */,
 				5135DE0A3008475E0048C886 /* TMDBEndpoint.swift in Sources */,
