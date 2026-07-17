@@ -20,6 +20,7 @@
 		5135DE103008634D0048C886 /* MockTMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE0F3008634D0048C886 /* MockTMDBService.swift */; };
 		5135DE12300918450048C886 /* CachedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE11300918440048C886 /* CachedMovie.swift */; };
 		5135DE15300957DB0048C886 /* MovieCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE14300957DB0048C886 /* MovieCacheManager.swift */; };
+		51854B50300A67500004DEBA /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B4F300A67500004DEBA /* NetworkMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		5135DE0F3008634D0048C886 /* MockTMDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTMDBService.swift; sourceTree = "<group>"; };
 		5135DE11300918440048C886 /* CachedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedMovie.swift; sourceTree = "<group>"; };
 		5135DE14300957DB0048C886 /* MovieCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCacheManager.swift; sourceTree = "<group>"; };
+		51854B4F300A67500004DEBA /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				5135DE0B300859DA0048C886 /* TMDBServiceProtocol.swift */,
 				5135DE0D30085ADC0048C886 /* TMDBService.swift */,
 				5135DE0F3008634D0048C886 /* MockTMDBService.swift */,
+				51854B4F300A67500004DEBA /* NetworkMonitor.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				5135DE043008443D0048C886 /* Movie.swift in Sources */,
 				5135DE103008634D0048C886 /* MockTMDBService.swift in Sources */,
 				5135DE12300918450048C886 /* CachedMovie.swift in Sources */,
+				51854B50300A67500004DEBA /* NetworkMonitor.swift in Sources */,
 				5135DDE93006BC0C0048C886 /* MoviesApp.swift in Sources */,
 				5135DE0C300859DA0048C886 /* TMDBServiceProtocol.swift in Sources */,
 				5135DE0A3008475E0048C886 /* TMDBEndpoint.swift in Sources */,
