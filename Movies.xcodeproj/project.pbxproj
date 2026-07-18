@@ -21,6 +21,10 @@
 		5135DE12300918450048C886 /* CachedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE11300918440048C886 /* CachedMovie.swift */; };
 		5135DE15300957DB0048C886 /* MovieCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5135DE14300957DB0048C886 /* MovieCacheManager.swift */; };
 		51854B50300A67500004DEBA /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B4F300A67500004DEBA /* NetworkMonitor.swift */; };
+		51854B54300C2EEF0004DEBA /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B53300C2EEF0004DEBA /* ViewState.swift */; };
+		51854B56300C2F630004DEBA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B55300C2F630004DEBA /* LoadingView.swift */; };
+		51854B58300C2F6D0004DEBA /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B57300C2F6D0004DEBA /* ErrorView.swift */; };
+		51854B5A300C2F790004DEBA /* MovieCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B59300C2F790004DEBA /* MovieCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +43,10 @@
 		5135DE11300918440048C886 /* CachedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedMovie.swift; sourceTree = "<group>"; };
 		5135DE14300957DB0048C886 /* MovieCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCacheManager.swift; sourceTree = "<group>"; };
 		51854B4F300A67500004DEBA /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		51854B53300C2EEF0004DEBA /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		51854B55300C2F630004DEBA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		51854B57300C2F6D0004DEBA /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		51854B59300C2F790004DEBA /* MovieCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +79,7 @@
 		5135DDE73006BC0C0048C886 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				51854B52300C2EE20004DEBA /* Utilities */,
 				5135DDF13006C05B0048C886 /* App */,
 				5135DDED3006BCFE0048C886 /* Models */,
 				5135DDEB3006BCE40048C886 /* Views */,
@@ -86,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				5135DDE53006BC0C0048C886 /* ContentView.swift */,
+				51854B51300C2ED30004DEBA /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -135,6 +145,24 @@
 				5135DE14300957DB0048C886 /* MovieCacheManager.swift */,
 			);
 			path = Caching;
+			sourceTree = "<group>";
+		};
+		51854B51300C2ED30004DEBA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				51854B55300C2F630004DEBA /* LoadingView.swift */,
+				51854B57300C2F6D0004DEBA /* ErrorView.swift */,
+				51854B59300C2F790004DEBA /* MovieCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		51854B52300C2EE20004DEBA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				51854B53300C2EEF0004DEBA /* ViewState.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,12 +244,16 @@
 				5135DDF03006BD580048C886 /* Secrets.swift in Sources */,
 				5135DE083008474D0048C886 /* NetworkError.swift in Sources */,
 				5135DE043008443D0048C886 /* Movie.swift in Sources */,
+				51854B5A300C2F790004DEBA /* MovieCardView.swift in Sources */,
 				5135DE103008634D0048C886 /* MockTMDBService.swift in Sources */,
+				51854B56300C2F630004DEBA /* LoadingView.swift in Sources */,
+				51854B54300C2EEF0004DEBA /* ViewState.swift in Sources */,
 				5135DE12300918450048C886 /* CachedMovie.swift in Sources */,
 				51854B50300A67500004DEBA /* NetworkMonitor.swift in Sources */,
 				5135DDE93006BC0C0048C886 /* MoviesApp.swift in Sources */,
 				5135DE0C300859DA0048C886 /* TMDBServiceProtocol.swift in Sources */,
 				5135DE0A3008475E0048C886 /* TMDBEndpoint.swift in Sources */,
+				51854B58300C2F6D0004DEBA /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
