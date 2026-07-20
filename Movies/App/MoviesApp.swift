@@ -10,9 +10,13 @@ import SwiftData
 
 @main
 struct MoviesApp: App {
-    var body: some Scene {
+	
+	@State private var monitor = NetworkMonitor.shared
+    
+	var body: some Scene {
         WindowGroup {
             ContentView()
+				.environment(monitor)
 				.modelContainer(for: CachedMovie.self)
         }
     }

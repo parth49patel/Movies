@@ -21,7 +21,7 @@ enum TMDBEndpoint {
 			case .nowPlaying: return "movie/now_playing"
 			case .popular: return "movie/popular"
 			case .topRated: return "movie/top_rated"
-			case .trending: return "movie/trending/day"
+			case .trending: return "trending/movie/week"
 			case .search: return "search/movie"
 			case .movieDetail(id: let id): return "movie/\(id)"
 			case .credits(id: let id): return "movie/\(id)/credits"

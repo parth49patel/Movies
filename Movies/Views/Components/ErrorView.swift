@@ -24,6 +24,7 @@ struct ErrorView: View {
 			Button("Retry", action: onRetry)
 				.buttonStyle(.bordered)
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
