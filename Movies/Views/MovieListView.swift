@@ -69,8 +69,7 @@ struct MovieListView: View {
 			await vm.loadMore(context: context)
 		}
 		.navigationDestination(for: Movie.self) { movie in
-			// TODO: - Change to MovieDetialView
-			Text(movie.title)
+			MovieDetailView(vm: MovieDetailViewModel(movieId: movie.id))
 		}
 	}
 	

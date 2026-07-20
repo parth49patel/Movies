@@ -13,4 +13,6 @@ protocol TMDBServiceProtocol {
 	func topRated(page: Int) async throws -> MovieResponse
 	func trending(page: Int) async throws -> MovieResponse
 	func search(query: String, page: Int) async throws -> MovieResponse
+	func movieDetail(id: Int) async throws -> MovieDetail
+	func credits(id: Int) async throws -> CreditsResponse
 }

@@ -28,6 +28,10 @@
 		51854B5C300C47970004DEBA /* MovieCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B5B300C47970004DEBA /* MovieCategory.swift */; };
 		51854B5E300C47B10004DEBA /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B5D300C47B10004DEBA /* MovieListViewModel.swift */; };
 		51854B60300C47BB0004DEBA /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B5F300C47BB0004DEBA /* MovieListView.swift */; };
+		51854B62300DC2110004DEBA /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B61300DC2110004DEBA /* MovieDetail.swift */; };
+		51854B64300DC3660004DEBA /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B63300DC3660004DEBA /* Credits.swift */; };
+		51854B66300DC5770004DEBA /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B65300DC5770004DEBA /* MovieDetailView.swift */; };
+		51854B68300DC5810004DEBA /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		51854B5B300C47970004DEBA /* MovieCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategory.swift; sourceTree = "<group>"; };
 		51854B5D300C47B10004DEBA /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		51854B5F300C47BB0004DEBA /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		51854B61300DC2110004DEBA /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		51854B63300DC3660004DEBA /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		51854B65300DC5770004DEBA /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
+		51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 				5135DDE53006BC0C0048C886 /* ContentView.swift */,
 				51854B51300C2ED30004DEBA /* Components */,
 				51854B5F300C47BB0004DEBA /* MovieListView.swift */,
+				51854B65300DC5770004DEBA /* MovieDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -111,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				51854B5D300C47B10004DEBA /* MovieListViewModel.swift */,
+				51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -121,6 +131,8 @@
 				5135DE033008443D0048C886 /* Movie.swift */,
 				5135DE11300918440048C886 /* CachedMovie.swift */,
 				51854B5B300C47970004DEBA /* MovieCategory.swift */,
+				51854B61300DC2110004DEBA /* MovieDetail.swift */,
+				51854B63300DC3660004DEBA /* Credits.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,9 +273,13 @@
 				5135DE12300918450048C886 /* CachedMovie.swift in Sources */,
 				51854B5C300C47970004DEBA /* MovieCategory.swift in Sources */,
 				51854B50300A67500004DEBA /* NetworkMonitor.swift in Sources */,
+				51854B62300DC2110004DEBA /* MovieDetail.swift in Sources */,
+				51854B64300DC3660004DEBA /* Credits.swift in Sources */,
 				5135DDE93006BC0C0048C886 /* MoviesApp.swift in Sources */,
 				5135DE0C300859DA0048C886 /* TMDBServiceProtocol.swift in Sources */,
 				51854B60300C47BB0004DEBA /* MovieListView.swift in Sources */,
+				51854B68300DC5810004DEBA /* MovieDetailViewModel.swift in Sources */,
+				51854B66300DC5770004DEBA /* MovieDetailView.swift in Sources */,
 				5135DE0A3008475E0048C886 /* TMDBEndpoint.swift in Sources */,
 				51854B58300C2F6D0004DEBA /* ErrorView.swift in Sources */,
 			);

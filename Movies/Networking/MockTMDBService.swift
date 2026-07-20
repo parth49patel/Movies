@@ -63,4 +63,26 @@ final class MockTMDBService: TMDBServiceProtocol {
 	func search(query: String, page: Int) async throws -> MovieResponse {
 		return Self.sampleResponse
 	}
+	
+	func movieDetail(id: Int) async throws -> MovieDetail {
+		MovieDetail(
+			id: id,
+			title: "Fight Club",
+			overview: "An insomniac office worker forms an underground fight club.",
+			posterPath: nil,
+			backdropPath: nil,
+			releaseDate: "1999-10-15",
+			voteAverage: 8.4,
+			runtime: 139,
+			genres: [Genre(id: 18, name: "Drama")],
+			tagline: "Mischief. Mayhem. Soap."
+		)
+	}
+
+	func credits(id: Int) async throws -> CreditsResponse {
+		CreditsResponse(cast: [
+			CastMember(id: 1, name: "Brad Pitt", character: "Tyler Durden", profilePath: nil),
+			CastMember(id: 2, name: "Edward Norton", character: "The Narrator", profilePath: nil)
+		])
+	}
 }
