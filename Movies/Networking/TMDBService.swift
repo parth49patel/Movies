@@ -34,6 +34,14 @@ final class TMDBService: TMDBServiceProtocol {
 		try await request(.search(query: query, page: page))
 	}
 	
+	func movieDetail(id: Int) async throws -> MovieDetail {
+		try await request(.movieDetail(id: id))
+	}
+	
+	func credits(id: Int) async throws -> CreditsResponse {
+		try await request(.credits(id: id))
+	}
+	
 	private func request<T: Decodable>(_ endpoint: TMDBEndpoint) async throws -> T {
 		guard let url = endpoint.url else { throw NetworkError.invalidURL }
 		let data: Data
