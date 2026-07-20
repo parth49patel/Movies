@@ -8,7 +8,6 @@
 import Foundation
 import SwiftData
 
-@MainActor
 final class MovieCacheManager {
 	static let shared = MovieCacheManager()
 	
@@ -26,6 +25,7 @@ final class MovieCacheManager {
 	}
 	
 	// MARK: - Write Movies to Cache
+	@MainActor
 	func writeToCache(_ movies: [Movie], category: String, page: Int, context: ModelContext) {
 		clearCache(category: category, page: page, context: context)
 		
@@ -37,6 +37,7 @@ final class MovieCacheManager {
 	}
 	
 	// MARK: - Read Movies from Cache
+	@MainActor
 	func readFromCache(category: String, page: Int, context: ModelContext) -> [Movie]? {
 		let descriptor = FetchDescriptor<CachedMovie>(
 			predicate: #Predicate { $0.category == category && $0.page == page },
@@ -52,6 +53,7 @@ final class MovieCacheManager {
 	}
 	
 	// MARK: - Clear Cache
+	@MainActor
 	func clearCache(category: String, page: Int, context: ModelContext) {
 		let descriptor = FetchDescriptor<CachedMovie>(
 			predicate: #Predicate { $0.category == category && $0.page == page }
@@ -62,6 +64,7 @@ final class MovieCacheManager {
 		}
 	}
 	
+	@MainActor
 	func clearAll(context: ModelContext) {
 		try? context.delete(model: CachedMovie.self)
 		try? context.save()
