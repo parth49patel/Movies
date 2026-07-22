@@ -13,19 +13,37 @@ struct MovieListView: View {
 	@Environment(NetworkMonitor.self) private var monitor
 
 	@State private var vm = MovieListViewModel()
-
+	@State private var searchQuery: String = ""
+	
 	var body: some View {
 		NavigationStack {
 			VStack(spacing: 0) {
-				categoryTabs
+				if !vm.isSearching {
+					categoryTabs
+				}
 				contentView
 			}
 			.navigationTitle(vm.selectedCategory.displayName)
+			.searchable(text: Binding(
+				get: { searchQuery },
+				set: {
+					searchQuery = $0
+					vm.updateSearch($0)
+				}
+			), prompt: "Search movies...")
+			.onSubmit(of: .search) {
+				vm.updateSearch(searchQuery)
+			}
 			.task {
 				await vm.loadMovies(context: context)
 			}
-			.refreshable {
-				Task { await vm.loadMovies(context: context) }
+			.onChange(of: monitor.isConnected) { _, isConnected in
+				if isConnected {
+					Task { await vm.loadMovies(context: context) }
+				}
+			}
+			.navigationDestination(for: Movie.self) { movie in
+				MovieDetailView(vm: MovieDetailViewModel(movieId: movie.id))
 			}
 		}
 	}
@@ -35,13 +53,14 @@ struct MovieListView: View {
 	private var contentView: some View {
 		switch vm.state {
 			case .idle, .loading:
-				LoadingView(message: "Loading \(vm.selectedCategory.displayName)...")
+				LoadingView(message: vm.isSearching ? "Searching..." : "Loading \(vm.selectedCategory.displayName)...")
+			
 			case .empty:
-				ErrorView(message: "No movies found for this category.") {
-					Task { await vm.loadMovies(context: context) }
-				}
+				placeholderView(icon: "questionmark.circle", message: vm.isSearching ? "No results found" : "No movies found")
+			
 			case .success(let movies):
-				movieList(movies)
+				movieList(vm.isSearching ? vm.searchResults : movies)
+			
 			case .failure(let error):
 				ErrorView(message: error.localizedDescription) {
 					Task { await vm.loadMovies(context: context) }
@@ -66,11 +85,23 @@ struct MovieListView: View {
 		}
 		.listStyle(.plain)
 		.refreshable {
-			await vm.loadMore(context: context)
+			if !vm.isSearching {
+				await vm.loadMore(context: context)
+			}
 		}
-		.navigationDestination(for: Movie.self) { movie in
-			MovieDetailView(vm: MovieDetailViewModel(movieId: movie.id))
+	}
+	
+	// MARK: - Placeholder View
+	private func placeholderView(icon: String, message: String) -> some View {
+		VStack(spacing: 12) {
+			Image(systemName: icon)
+				.font(.system(size: 48))
+				.foregroundStyle(.secondary)
+			Text(message)
+				.font(.subheadline)
+				.foregroundStyle(.secondary)
 		}
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
 	}
 	
 	// MARK: - Category Tabs (Capsule Shaped)
