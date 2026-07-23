@@ -18,8 +18,15 @@ struct MovieListView: View {
 	var body: some View {
 		NavigationStack {
 			VStack(spacing: 0) {
+				if let banner = vm.banner {
+					OfflineBannerView(state: banner) {
+						Task { await vm.refreshAfterReconnection(context: context) }
+					}
+					.transition(.move(edge: .top).combined(with: .opacity))
+				}
 				contentView
 			}
+			.animation(.easeInOut(duration: 0.3), value: vm.banner != nil)
 			.navigationTitle(vm.isFilteringBookmarks ? "Bookmarks" : "Movies")
 			.searchable(text: Binding(
 				get: { searchQuery },
@@ -44,9 +51,7 @@ struct MovieListView: View {
 				await vm.loadMovies(context: context)
 			}
 			.onChange(of: monitor.isConnected) { _, isConnected in
-				if isConnected {
-					Task { await vm.loadMovies(context: context) }
-				}
+				vm.handleConnectivityChanges(isConnected: isConnected, context: context)
 			}
 			.navigationDestination(for: Movie.self) { movie in
 				MovieDetailView(vm: MovieDetailViewModel(movieId: movie.id))
@@ -72,7 +77,7 @@ struct MovieListView: View {
 			
 			case .failure(let error):
 				ErrorView(message: error.localizedDescription) {
-					Task { await vm.loadMovies(context: context) }
+					Task { await vm.retry(context: context) }
 				}
 		}
 	}

@@ -34,6 +34,7 @@
 		51854B68300DC5810004DEBA /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */; };
 		51854B6A3010E0430004DEBA /* BookmarkedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B693010E0430004DEBA /* BookmarkedMovie.swift */; };
 		51854B6C3010E0580004DEBA /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B6B3010E0580004DEBA /* BookmarkManager.swift */; };
+		51D6055F3012D674001BE3BF /* OfflineBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D6055E3012D674001BE3BF /* OfflineBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		51854B693010E0430004DEBA /* BookmarkedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedMovie.swift; sourceTree = "<group>"; };
 		51854B6B3010E0580004DEBA /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
+		51D6055E3012D674001BE3BF /* OfflineBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				51854B55300C2F630004DEBA /* LoadingView.swift */,
 				51854B57300C2F6D0004DEBA /* ErrorView.swift */,
 				51854B59300C2F790004DEBA /* MovieCardView.swift */,
+				51D6055E3012D674001BE3BF /* OfflineBannerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				51854B68300DC5810004DEBA /* MovieDetailViewModel.swift in Sources */,
 				51854B66300DC5770004DEBA /* MovieDetailView.swift in Sources */,
 				5135DE0A3008475E0048C886 /* TMDBEndpoint.swift in Sources */,
+				51D6055F3012D674001BE3BF /* OfflineBannerView.swift in Sources */,
 				51854B58300C2F6D0004DEBA /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
