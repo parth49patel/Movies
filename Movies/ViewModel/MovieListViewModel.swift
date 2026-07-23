@@ -23,6 +23,8 @@ final class MovieListViewModel {
 	private(set) var isFilteringBookmarks: Bool = false
 	private(set) var bookmarkedMovies: [Movie] = []
 	
+	private(set) var banner: BannerState? = nil
+	
 	private var searchTask: Task<Void, Never>?
 	private let monitor: NetworkMonitor
 	private let cache: MovieCacheManager
@@ -44,6 +46,7 @@ final class MovieListViewModel {
 	func loadMovies(context: ModelContext) async {
 		if case .success = state { return }
 
+		// Check Cache
 		let cached = cache.readFromCache(category: selectedCategory.rawValue, page: currentPage, context: context)
 		if let cached, !cached.isEmpty {
 			state = .success(cached)
@@ -51,10 +54,17 @@ final class MovieListViewModel {
 		}
 
 		guard monitor.isConnected else {
-			state = .failure(NetworkError.noInternet)
+			let bookmarks = BookmarkManager.shared.fetchAll(context: context)
+			if !bookmarks.isEmpty {
+				state = .success(bookmarks)
+				banner = .offline
+			} else {
+				state = .failure(NetworkError.noInternet)
+			}
 			return
 		}
 
+		// Online
 		state = .loading
 		do {
 			let response = try await fetch(page: currentPage)
@@ -185,5 +195,38 @@ final class MovieListViewModel {
 			state = .idle
 			Task { await loadMovies(context: context) }
 		}
+	}
+	
+	// MARK: - Offline Mode
+	@MainActor
+	func handleConnectivityChanges(isConnected: Bool, context: ModelContext) {
+		if isConnected {
+			if case .success = state {
+				banner = .backOnline
+			} else {
+				Task { await loadMovies(context: context) }
+			}
+		} else {
+			banner = .offline
+		}
+	}
+	
+	@MainActor
+	func refreshAfterReconnection(context: ModelContext) async {
+		banner = nil
+		await refresh(context: context)
+	}
+	
+	@MainActor
+	func retry(context: ModelContext) async {
+		guard monitor.isConnected else {
+			let bookmarks = BookmarkManager.shared.fetchAll(context: context)
+			if !bookmarks.isEmpty {
+				state = .success(bookmarks)
+				banner = .offline
+			}
+			return
+		}
+		await loadMovies(context: context)
 	}
 }
