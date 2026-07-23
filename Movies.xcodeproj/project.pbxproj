@@ -32,6 +32,8 @@
 		51854B64300DC3660004DEBA /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B63300DC3660004DEBA /* Credits.swift */; };
 		51854B66300DC5770004DEBA /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B65300DC5770004DEBA /* MovieDetailView.swift */; };
 		51854B68300DC5810004DEBA /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */; };
+		51854B6A3010E0430004DEBA /* BookmarkedMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B693010E0430004DEBA /* BookmarkedMovie.swift */; };
+		51854B6C3010E0580004DEBA /* BookmarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51854B6B3010E0580004DEBA /* BookmarkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		51854B63300DC3660004DEBA /* Credits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
 		51854B65300DC5770004DEBA /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		51854B67300DC5810004DEBA /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		51854B693010E0430004DEBA /* BookmarkedMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedMovie.swift; sourceTree = "<group>"; };
+		51854B6B3010E0580004DEBA /* BookmarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +137,7 @@
 				51854B5B300C47970004DEBA /* MovieCategory.swift */,
 				51854B61300DC2110004DEBA /* MovieDetail.swift */,
 				51854B63300DC3660004DEBA /* Credits.swift */,
+				51854B693010E0430004DEBA /* BookmarkedMovie.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				5135DE14300957DB0048C886 /* MovieCacheManager.swift */,
+				51854B6B3010E0580004DEBA /* BookmarkManager.swift */,
 			);
 			path = Caching;
 			sourceTree = "<group>";
@@ -266,8 +272,10 @@
 				5135DDF03006BD580048C886 /* Secrets.swift in Sources */,
 				5135DE083008474D0048C886 /* NetworkError.swift in Sources */,
 				5135DE043008443D0048C886 /* Movie.swift in Sources */,
+				51854B6A3010E0430004DEBA /* BookmarkedMovie.swift in Sources */,
 				51854B5A300C2F790004DEBA /* MovieCardView.swift in Sources */,
 				5135DE103008634D0048C886 /* MockTMDBService.swift in Sources */,
+				51854B6C3010E0580004DEBA /* BookmarkManager.swift in Sources */,
 				51854B56300C2F630004DEBA /* LoadingView.swift in Sources */,
 				51854B54300C2EEF0004DEBA /* ViewState.swift in Sources */,
 				5135DE12300918450048C886 /* CachedMovie.swift in Sources */,

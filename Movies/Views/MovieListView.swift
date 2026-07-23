@@ -18,12 +18,9 @@ struct MovieListView: View {
 	var body: some View {
 		NavigationStack {
 			VStack(spacing: 0) {
-				if !vm.isSearching {
-					categoryTabs
-				}
 				contentView
 			}
-			.navigationTitle(vm.selectedCategory.displayName)
+			.navigationTitle(vm.isFilteringBookmarks ? "Bookmarks" : "Movies")
 			.searchable(text: Binding(
 				get: { searchQuery },
 				set: {
@@ -33,6 +30,15 @@ struct MovieListView: View {
 			), prompt: "Search movies...")
 			.onSubmit(of: .search) {
 				vm.updateSearch(searchQuery)
+			}
+			.toolbar {
+				ToolbarItem(placement: .automatic) {
+					Button {
+						vm.toggleBookmarkFilter(context: context)
+					} label: {
+						Image(systemName: vm.isFilteringBookmarks ? "bookmark.fill" : "bookmark")
+					}
+				}
 			}
 			.task {
 				await vm.loadMovies(context: context)
@@ -56,7 +62,10 @@ struct MovieListView: View {
 				LoadingView(message: vm.isSearching ? "Searching..." : "Loading \(vm.selectedCategory.displayName)...")
 			
 			case .empty:
-				placeholderView(icon: "questionmark.circle", message: vm.isSearching ? "No results found" : "No movies found")
+				placeholderView(
+					icon: vm.isFilteringBookmarks ? "bookmark.slash" : "questionmark.circle",
+					message: vm.isFilteringBookmarks ? "No bookmarks yet" : vm.isSearching ? "No results found" : "No movies found"
+				)
 			
 			case .success(let movies):
 				movieList(vm.isSearching ? vm.searchResults : movies)
@@ -71,13 +80,25 @@ struct MovieListView: View {
 	// MARK: - Movie List
 	private func movieList(_ movies: [Movie]) -> some View {
 		List {
+			if !vm.isSearching && !vm.isFilteringBookmarks {
+				Section {
+					// empty - header is the tabs
+				} header: {
+					categoryTabs
+						.listRowInsets(EdgeInsets())
+						.background(Color(.systemBackground))
+				}
+			}
 			ForEach(movies) { movie in
 				NavigationLink(value: movie) {
-					MovieCardView(movie: movie)
+					MovieCardView(movie: movie, context: context)
 				}
 				.listRowSeparator(.hidden)
 				.onAppear {
-					if movie == movies.last {
+					if let lastMovie = movies.last,
+					   movie.id == lastMovie.id,
+					   !vm.isSearching ,
+					   !vm.isFilteringBookmarks {
 						Task { await vm.loadMore(context: context) }
 					}
 				}
@@ -85,8 +106,8 @@ struct MovieListView: View {
 		}
 		.listStyle(.plain)
 		.refreshable {
-			if !vm.isSearching {
-				await vm.loadMore(context: context)
+			if !vm.isSearching && !vm.isFilteringBookmarks {
+				await vm.refresh(context: context)
 			}
 		}
 	}
