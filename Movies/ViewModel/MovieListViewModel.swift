@@ -16,9 +16,13 @@ final class MovieListViewModel {
 	private(set) var currentPage: Int = 1
 	private(set) var totalPages: Int = 1
 	private(set) var selectedCategory: MovieCategory = .nowPlaying
+	
 	private(set) var searchResults: [Movie] = []
 	private(set) var isSearching: Bool = false
  
+	private(set) var isFilteringBookmarks: Bool = false
+	private(set) var bookmarkedMovies: [Movie] = []
+	
 	private var searchTask: Task<Void, Never>?
 	private let monitor: NetworkMonitor
 	private let cache: MovieCacheManager
@@ -34,7 +38,8 @@ final class MovieListViewModel {
 		self.service = service
 	}
 
-	// MARK: - Load Movies
+	// MARK: - Load
+	// MARK: Load Movies
 	@MainActor
 	func loadMovies(context: ModelContext) async {
 		if case .success = state { return }
@@ -65,7 +70,7 @@ final class MovieListViewModel {
 		}
 	}
 
-	// MARK: - Pagination: Loading more movies
+	// MARK: Pagination: Loading more movies
 	@MainActor
 	func loadMore(context: ModelContext) async {
 		guard currentPage < totalPages else { return }
@@ -84,7 +89,7 @@ final class MovieListViewModel {
 		}
 	}
 
-	// MARK: - Category Selection
+	// MARK: Category Selection
 	@MainActor
 	func selectCategory(_ category: MovieCategory, context: ModelContext) async {
 		guard category != selectedCategory else { return }
@@ -95,7 +100,7 @@ final class MovieListViewModel {
 		await loadMovies(context: context)
 	}
 
-	// MARK: - Refresh
+	// MARK: Refresh
 	@MainActor
 	func refresh(context: ModelContext) async {
 		currentPage = 1
@@ -105,7 +110,7 @@ final class MovieListViewModel {
 		await loadMovies(context: context)
 	}
 
-	// MARK: - Fetch Movies (different endpoints)
+	// MARK: Fetch Movies (different endpoints)
 	private func fetch(page: Int) async throws -> MovieResponse {
 		switch selectedCategory {
 		case .nowPlaying: return try await service.nowPlaying(page: page)
@@ -118,6 +123,10 @@ final class MovieListViewModel {
 	// MARK: - Search
 	@MainActor
 	func updateSearch(_ query: String) {
+		if isFilteringBookmarks {
+			isFilteringBookmarks = false
+			bookmarkedMovies = []
+		}
 		searchTask?.cancel()
 		let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
 		
@@ -160,5 +169,21 @@ final class MovieListViewModel {
 		isSearching = false
 		searchResults = []
 		state = .idle
+	}
+	
+	// MARK: - Bookmark
+	@MainActor
+	func toggleBookmarkFilter(context: ModelContext) {
+		isFilteringBookmarks.toggle()
+		if isFilteringBookmarks {
+			bookmarkedMovies = BookmarkManager.shared.fetchAll(context: context)
+			searchTask?.cancel()
+			isSearching = false
+			state = bookmarkedMovies.isEmpty ? .empty : .success(bookmarkedMovies)
+		} else {
+			bookmarkedMovies = []
+			state = .idle
+			Task { await loadMovies(context: context) }
+		}
 	}
 }

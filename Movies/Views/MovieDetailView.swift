@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MovieDetailView: View {
 	
 	@Environment(NetworkMonitor.self) private var monitor
+	@Environment(\.modelContext) private var context
 	@State var vm: MovieDetailViewModel
 	
 	var body: some View {
@@ -30,6 +32,29 @@ struct MovieDetailView: View {
 			}
 		}
 		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			ToolbarItem(placement: .automatic) {
+				if case .success(let detail) = vm.state {
+					let movie = Movie(
+						id: detail.id,
+						title: detail.title,
+						overview: detail.overview,
+						posterPath: detail.posterPath,
+						backdropPath: detail.backdropPath,
+						releaseDate: detail.releaseYear,
+						voteAverage: detail.voteAverage,
+						genreIds: detail.genres.map { $0.id }
+					)
+					let isBookmarked = BookmarkManager.shared.isBookmarked(id: detail.id, context: context)
+					Button {
+						BookmarkManager.shared.bookmark(movie, context: context)
+					} label: {
+						Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
+							.foregroundStyle(isBookmarked ? .blue : .secondary)
+					}
+				}
+			}
+		}
 		.task { await vm.load() }
 		.onChange(of: monitor.isConnected) { _, isConnected in
 			if isConnected {

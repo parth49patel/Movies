@@ -17,7 +17,7 @@ struct MoviesApp: App {
         WindowGroup {
             ContentView()
 				.environment(monitor)
-				.modelContainer(for: CachedMovie.self)
+				.modelContainer(for: [CachedMovie.self, BookmarkedMovie.self])
         }
     }
 }
